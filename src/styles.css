@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oxygen', sans-serif;
+}
+
+#root {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: honeydew;
+}
+
+.login-container,
+.signup-container {
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 5px rgba(128, 128, 128, 0.35);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    min-height: 350px;
+    padding: 25px;
+    gap: 2rem;
+    background-color: white;
+}
+
+.login-container div,
+.signup-container div {
+    width: 100%;
+    gap: 1rem;
+}
+
+.login-container label,
+.signup-container label {
+    display: flex;
+    width: 50%;
+    font-size: 20px;
+}
+
+.login-container input,
+.signup-container input {
+    width: 70%;
+    border-radius: 5px;
+    height: 30px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    padding: 10px;
+}
+
+.login-container button,
+.signup-container button,
+.test button {
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: crimson;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    outline: none;
+    color: white;
+}
+
+.login-container h1,
+.signup-container h1 {
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.login-container .signup-message {
+    color: blue;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
