@@ -12,7 +12,7 @@ body {
 #root {
     display: flex;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
     background-color: honeydew;
@@ -59,7 +59,7 @@ body {
 
 .login-container button,
 .signup-container button,
-.test button {
+.inventory button {
     border-radius: 5px;
     padding: 8px;
     font-size: 14px;
@@ -81,4 +81,90 @@ body {
 
 .clickable:hover {
     cursor: pointer;
+}
+
+
+/* Inventory */
+
+.inventory {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.inventory .header {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inventory .content-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.inventory .content-header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.inventory .content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Item */
+
+.inventory .content-details .item {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 25px;
+    box-shadow: 2px 2px 3px rgba(128, 128, 128, 0.445);
+    border-radius: 12px;
+    background-color: white;
+}
+
+.item .item-details {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.item img {
+    width: 20%;
+    height: 200px;
+    object-fit: contain;
+}
+
+.item .info {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info .name {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.item .remove {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
 }
