@@ -24,6 +24,7 @@ export default function AddItem(){
             alert('Image URL cannot be empty')
             return
         }
+        // eslint-disable-next-line
         let data = await databaseRef.collection(category.toLowerCase()).add({
             name: nameRef.current.value,
             price: Number(priceRef.current.value),
