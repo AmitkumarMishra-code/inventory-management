@@ -9,6 +9,7 @@ export default function SignUp() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const password2Ref = useRef()
+    // eslint-disable-next-line
     const [user, setUser] = useState()
 
     let signUpHandler = () => {

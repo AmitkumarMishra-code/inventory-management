@@ -4,6 +4,7 @@ import firebase from "../firebase-config";
 
 export default function Login() {
     const history = useHistory()
+    // eslint-disable-next-line
     const [user, setUser] = useState(null)
     const emailRef = useRef()
     const passwordRef = useRef()
