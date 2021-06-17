@@ -1,25 +1,36 @@
-import { useRef, useState } from "react"
+import { useContext, useRef } from "react"
 import { useHistory } from "react-router-dom"
+import UserContext from "../context/userContext";
 import firebase from "../firebase-config";
 
 export default function Login() {
     const history = useHistory()
-    // eslint-disable-next-line
-    const [user, setUser] = useState(null)
+    const {dispatch} = useContext(UserContext)
     const emailRef = useRef()
     const passwordRef = useRef()
     let loginHandler = () => {
         firebase.auth().signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
         .then((userCredential) => {
           // Signed in
-          setUser(userCredential.user);
+        //   setUser(userCredential.user);
+          dispatch({type:'set_user', payload: userCredential.user})
           history.push('/inventory-page')
           // ...
         })
         .catch((error) => {
-          alert('Error: ', error.message)
+            console.log(error)
+          alert('Error: '+ error.message)
+          dispatch('reset_user')
         });
     }
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          dispatch('reset_user')
+          history.push('/')
+        }
+      });
+
     return (
         <div className="login">
             <div className="login-container">

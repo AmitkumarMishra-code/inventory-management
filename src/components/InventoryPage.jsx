@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import UserContext from "../context/userContext";
 import firebase from "../firebase-config";
 import { databaseRef } from "../firebase-config";
 import Item from "./Item";
@@ -9,11 +10,13 @@ export default function InventoryPage() {
     const [categories, setCategories] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
     const [displayData, setDisplayData] = useState([])
+    const {state, dispatch} = useContext(UserContext)
 
     let logoutHandler = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
             alert('Signed Out Successfully')
+            dispatch('reset_user')
             history.push('/')
         }).catch((error) => {
             alert('Error: ', error.message)
@@ -36,28 +39,39 @@ export default function InventoryPage() {
         }
         let result = await databaseRef.collection(category.toLowerCase()).get()
         let items = []
-        result.docs.forEach(doc => items.push(doc.data()))
+        result.docs.forEach(doc => items.push({...doc.data(), id: doc.id}))
         console.log(items)
         setDisplayData(items)
     }
 
     useEffect(() => {
+        if(!state.user){
+            history.push('/')
+        }
         getCategories()
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
         getInventory(selectedCategory)
     }, [selectedCategory])
 
-    let addCategoryHandler = () => {
+    // let addCategoryHandler = () => {
 
-    }
+    // }
 
     let addItemHandler = () => {
         history.push({
             pathname:'/add-item',
             state:selectedCategory
         })
+    }
+
+    let deleteHandler = (id) => {
+        if(window.confirm('Are you sure?', 'Confirm Delete Action!')){
+            databaseRef.collection(selectedCategory.toLowerCase()).doc(id).delete()
+            getInventory(selectedCategory)
+        }
     }
 
     return (
@@ -72,7 +86,7 @@ export default function InventoryPage() {
                             {categories.length > 0 && categories.map((category, index) => <option key={index} value={category}>{category}</option>)}
                         </select>
                     </div>
-                    <button className="add-category" onClick={addCategoryHandler}>Add New Category</button>
+                    {/* <button className="add-category" onClick={addCategoryHandler}>Add New Category</button> */}
                     <button className="add-item" onClick={addItemHandler}>Add an Item</button>
                 </div>
                 <div className="content-details">
@@ -83,6 +97,8 @@ export default function InventoryPage() {
                                                                                 image = {item.image}
                                                                                 key = {index}
                                                                                 quantity = {item.quantity ? item.quantity:null}
+                                                                                id = {item.id}
+                                                                                deleteHandler = {deleteHandler}
                                                                                 />)}
                 </div>
             </div>

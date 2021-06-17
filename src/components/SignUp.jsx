@@ -1,6 +1,5 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useHistory } from "react-router-dom"
-// import firebase from 'firebase/app'
 import firebase from "../firebase-config";
 
 
@@ -9,8 +8,7 @@ export default function SignUp() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const password2Ref = useRef()
-    // eslint-disable-next-line
-    const [user, setUser] = useState()
+
 
     let signUpHandler = () => {
         if(password2Ref.current.value !== passwordRef.current.value){
@@ -20,12 +18,11 @@ export default function SignUp() {
         firebase.auth().createUserWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
         .then((userCredential) => {
           // Signed in 
-          setUser(userCredential.user);
-          history.push('/')
+          history.push('/inventory-page')
           // ...
         })
         .catch((error) => {
-            alert('Error: ', error.message)
+            alert('Error: '+ error.message)
           // ..
         });
     }

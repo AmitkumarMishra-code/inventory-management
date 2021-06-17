@@ -11,7 +11,6 @@ body {
 
 #root {
     display: flex;
-    width: 100vw;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
@@ -19,7 +18,8 @@ body {
 }
 
 .login-container,
-.signup-container {
+.signup-container,
+.add-item-div {
     width: 400px;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -35,20 +35,23 @@ body {
 }
 
 .login-container div,
-.signup-container div {
+.signup-container div,
+.add-item-div div {
     width: 100%;
     gap: 1rem;
 }
 
 .login-container label,
-.signup-container label {
+.signup-container label,
+.add-item-div label {
     display: flex;
     width: 50%;
     font-size: 20px;
 }
 
 .login-container input,
-.signup-container input {
+.signup-container input,
+.add-item-div input {
     width: 70%;
     border-radius: 5px;
     height: 30px;
@@ -59,7 +62,8 @@ body {
 
 .login-container button,
 .signup-container button,
-.inventory button {
+.inventory button,
+.add-item-div button {
     border-radius: 5px;
     padding: 8px;
     font-size: 14px;
@@ -70,7 +74,8 @@ body {
 }
 
 .login-container h1,
-.signup-container h1 {
+.signup-container h1,
+.add-item-div h1 {
     border-bottom: 1px solid black;
     width: 100%;
 }
@@ -96,7 +101,7 @@ body {
 
 .inventory .header {
     display: flex;
-    padding: 20px;
+    padding: 30px;
     justify-content: space-between;
     align-items: center;
 }
@@ -167,4 +172,11 @@ body {
     width: 100%;
     justify-content: flex-end;
     align-items: center;
+}
+
+.add-item-div .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
 }

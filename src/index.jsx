@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import { UserContextProvider } from './context/userContext';
 import './styles.css';
 
 ReactDOM.render(
-    <App />,
+  <UserContextProvider>
+    <App />
+    </UserContextProvider>,
   document.getElementById('root')
 );
 

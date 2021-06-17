@@ -1,4 +1,4 @@
-export default function Item({ name, description, price, quantity, image }) {
+export default function Item({ name, description, price, quantity, image, id, deleteHandler }) {
     return (
         <div className="item">
             <div className="item-details">
@@ -10,7 +10,7 @@ export default function Item({ name, description, price, quantity, image }) {
                     {quantity && <p className='quantity'><strong>Quantity : </strong>{quantity}</p>}
                 </div>
             </div>
-            <div className="remove"><button className='delete'>x</button></div>
+            <div className="remove"><button className='delete' onClick = {() => deleteHandler(id)}>x</button></div>
         </div>
     )
 }
